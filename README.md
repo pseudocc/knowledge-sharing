@@ -70,5 +70,14 @@ We will be focusing on the following plugins:
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
     Real cool fuzzy-finder for quick navigation.
     
-= [packer.nvim](https://github.com/wbthomason/packer.nvim)
+- [packer.nvim](https://github.com/wbthomason/packer.nvim)
     Plugin manager that can also manage itself, easy to use and apply customizations on plugins.
+
+## Vim motions and tricks
+
+There are a lot of ways you can do certain things in Vim, memorizing everything is not
+practical, I found these quite useful.
+
+1. Basic Vim motions
+1. Advanced Vim motions (`:help text-objects`)
+1. Very useful keybindings
