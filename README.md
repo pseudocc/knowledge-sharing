@@ -61,3 +61,14 @@ support.
 ## Neovim Plugins
 
 You can find Neovim plugins here: [neovimcraft](https://neovimcraft.com/).
+
+We will be focusing on the following plugins:
+
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+    The nvim-treesitter will provide you better syntax highlighting, better indention support.
+
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+    Real cool fuzzy-finder for quick navigation.
+    
+= [packer.nvim](https://github.com/wbthomason/packer.nvim)
+    Plugin manager that can also manage itself, easy to use and apply customizations on plugins.
