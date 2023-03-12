@@ -33,6 +33,8 @@ adding those features as well.
     You can use `:terminal` to launch a terminal inside Vim/Neovim. And you may
     find yourself falled into this recursive hell.
 
+    ![img](assets/vim-term.png)
+
 1. Asynchronous action.
 
     This is more usfully in plugin developemnt, so the codes can be executed in
