@@ -58,6 +58,11 @@ support.
     
     Then many great plugins came along for Neovim only, as they are written in Lua.
 
+### Defaults
+
+The [defaults](https://neovim.io/doc/user/vim_diff.html#nvim-defaults) settings of a
+brand new Neovim environment is different from Vim.
+
 ## Neovim Plugins
 
 You can find Neovim plugins here: [neovimcraft](https://neovimcraft.com/).
@@ -65,19 +70,84 @@ You can find Neovim plugins here: [neovimcraft](https://neovimcraft.com/).
 We will be focusing on the following plugins:
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-    The nvim-treesitter will provide you better syntax highlighting, better indention support.
+    The nvim-treesitter will provide you better syntax highlighting, better indention
+    support.
 
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
     Real cool fuzzy-finder for quick navigation.
     
 - [packer.nvim](https://github.com/wbthomason/packer.nvim)
-    Plugin manager that can also manage itself, easy to use and apply customizations on plugins.
+    Plugin manager that can also manage itself, easy to use and apply customizations
+    on plugins.
+
+### Neovim Setup
+
+Configure your Neovim:
+[0 to LSP: Neovim RC from Scratch](https://www.youtube.com/watch?v=w7i4amO_zaE&t=421s).
+
+My Vim setup:
+[vim](https://github.com/pseudocc/dotfiles/tree/vim).
+
+My Neovim setup:
+[nvim](https://github.com/pseudocc/dotfiles/tree/nvim).
 
 ## Vim motions and tricks
 
 There are a lot of ways you can do certain things in Vim, memorizing everything is not
-practical, I found these quite useful.
+practical.
 
 1. Basic Vim motions
+
+    - `:h left-right-motions`: h, l, f, t, F, T
+    - `:h up-down-motions`: j, k, (), {}, CTRL-U, CTRL-D
+    - `:h jump-motions`: CTRL-O, CTRL-I
+
 1. Advanced Vim motions (`:help text-objects`)
+
+    - word: aw, iw, aW, iW
+    - sentence/paragraph: as, is, ap, ip
+    - blocks: a[, i[, a(, i(, a{, i{, a", i", a', i', a\`, i\`
+
 1. Very useful keybindings
+
+    Move lines up/down, or move character left/right.
+
+    ```lua
+    -- move lines up/down or character left/right
+    local opts = { silent = true, remap = false }
+    local map = vim.keymap
+    map.set('n', '<M-k>', [[:m .-2<CR>==]], opts)
+    map.set('n', '<M-j>', [[:m .+1<CR>==]], opts)
+    map.set('n', '<M-l>', [["9x"9p]], opts)
+    map.set('n', '<M-h>', [[h"9x"9ph]], opts)
+    map.set('i', '<M-k>', [[<Esc>:m .-2<CR>==gi]], opts)
+    map.set('i', '<M-j>', [[<Esc>:m .+1<CR>==gi]], opts)
+    map.set('i', '<M-l>', [[<Esc>l"9x"9pi]], opts)
+    map.set('i', '<M-h>', [[<Esc>"9x"9phi]], opts)
+    map.set('v', '<M-k>', [[:m '<-2<CR>gv=gv]], opts)
+    map.set('v', '<M-j>', [[:m '>+1<CR>gv=gv]], opts)
+    ```
+
+    Equivalent in Vimscript.
+    ```vim
+    nnoremap <silent><M-k> :m .-2<CR>==
+    nnoremap <silent><M-j> :m .+1<CR>==
+    nnoremap <silent><M-l> xp
+    nnoremap <silent><M-h> hxph
+
+    inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+    inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><M-l> <Esc>lxpi
+    inoremap <silent><M-h> <Esc>xphi
+
+    vnoremap <silent><M-k> :m '<-2<CR>gv=gv
+    vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+    ```
+
+		Replace virtual mode selection with losing the current
+    register.
+    ```lua
+    local opts = { silent = true, remap = false }
+    map.set({ 'n', 'v' }, '<leader>D', [["_d]], opts)
+    map.set({ 'n', 'v' }, '<leader>P', [["_dP]], opts)
+    ```
