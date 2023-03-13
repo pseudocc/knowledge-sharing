@@ -144,8 +144,9 @@ practical.
     vnoremap <silent><M-j> :m '>+1<CR>gv=gv
     ```
 
-		Replace virtual mode selection with losing the current
+    Replace virtual mode selection with losing the current
     register.
+
     ```lua
     local opts = { silent = true, remap = false }
     map.set({ 'n', 'v' }, '<leader>D', [["_d]], opts)
